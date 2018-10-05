@@ -9,7 +9,7 @@ Forked from pBrain project by Pat Quinn
 
 # Setup
 
-you can acces from http or https (updated)
+you can access from http or https (updated)
 
 ## Install
 
