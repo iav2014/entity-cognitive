@@ -1,0 +1,52 @@
+{
+  "name": "entity-cognitive",
+  "version": "1.0.0",
+  "description": "cognitive motor in nodejs",
+  "main": "app.js",
+  "directories": {
+    "doc": "docs",
+    "lib": "lib",
+    "test": "test"
+  },
+  "dependencies": {
+    "basic-auth": "^2.0.0",
+    "cheerio": "^1.0.0-rc.2",
+    "co": "^4.6.0",
+    "co-express": "^2.0.0",
+    "co-request": "^1.0.0",
+    "compression": "^1.7.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.3",
+    "html-entities": "^1.2.1",
+    "ip": "^1.1.5",
+    "json2csv": "^4.1.6",
+    "jsonwebtoken": "^8.3.0",
+    "libxmljs": "^0.18.8",
+    "log4js": "^0.6.9",
+    "md5": "^2.2.1",
+    "moment": "^2.22.2",
+    "mongodb": "^3.1.1",
+    "morgan": "^1.9.0",
+    "natural": "^0.6.1",
+    "q": "^1.5.1",
+    "socket.io": "^2.1.1",
+    "speakeasy-nlp": "^0.2.13",
+    "sqlite3": "^4.0.1",
+    "ssl-root-cas": "^1.2.5",
+    "stack-trace": "0.0.10",
+    "striptags": "^3.1.1",
+    "sync-request": "^6.0.0",
+    "tabletojson": "^0.9.8",
+    "thunkify-wrap": "^1.0.4",
+    "wolfram-alpha": "^0.6.0",
+    "words-to-num": "0.0.2",
+    "x-ray": "^2.3.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "Nacho Ariza Victoria @ 2018",
+  "license": "MIT"
+}

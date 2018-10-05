@@ -1,0 +1,65 @@
+const request = require('co-request')
+const util = require('util')
+
+const api_opnw = 'http://api.openweathermap.org/data/2.5/weather?q=madrid,spain&units=metric&appid=%s'
+const type_wardrobe = {
+    rain: 'a jacket',
+    snow: 'a scarf and gloves',
+    sun: 'some sun glasses',
+    clear: 'a t-shirt and shorts',
+    wind: 'a jumper',
+    mist: 'a hat'
+}
+
+function contains_key(string, keyword) {
+    if (string.toUpperCase().includes(keyword.toUpperCase())) {
+        return true
+    }
+    return false
+}
+
+function * clothing_resp() {
+    let response = 'Looks like <condition>, better wear <clothes>'
+    let clothes = 'a jacket'
+    const key = yield global.db.getSkillValue('weather', 'openweathermap')
+    let data = yield request(util.format(api_opnw, key), {
+        headers: {
+            'Content-type': 'application/json'
+        }
+    })
+
+    data = JSON.parse(data.body)
+
+    const condition = data.weather[0].main
+
+    if (contains_key(condition, 'rain') || contains_key(condition, 'shower')) {
+        clothes = type_wardrobe.rain
+    } else if (contains_key(condition, 'snow')) {
+        clothes = type_wardrobe.snow
+    } else if (contains_key(condition, 'mist')) {
+        clothes = type_wardrobe.mist
+    } else if (contains_key(condition, 'wind')) {
+        clothes = type_wardrobe.wind
+    } else if (contains_key(condition, 'sun')) {
+        clothes = type_wardrobe.sun
+    }
+
+    response = response.replace('<condition>', condition)
+    response = response.replace('<clothes>', clothes)
+
+    return {text: response}
+}
+
+const intent = () => ({
+    keywords: ['wear today', 'clothes'], module: 'clothing'
+})
+
+const examples = () => (
+    ['should I wear']
+)
+
+module.exports = {
+    get: clothing_resp,
+    intent,
+    examples
+}
